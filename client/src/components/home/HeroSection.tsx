@@ -29,7 +29,8 @@ export default function HeroSection() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium mb-8 animate-fade-in">
             <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-            <span>Building the future of web technology</span>
+            {/* <span>Building the future of web technology</span> */}
+            <span>Pritam</span>
           </div>
 
           {/* Main Heading */}
