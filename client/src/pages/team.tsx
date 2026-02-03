@@ -1,20 +1,18 @@
-import { useState } from 'react';
 import Head from 'next/head';
-import { Linkedin, Github, Mail, Filter } from 'lucide-react';
 
 const teamMembers = [
   // Leadership
   {
     id: 1,
-    name: 'Dr. Faculty Advisor',
-    role: 'Faculty Advisor',
+    name: 'Ganesh Shejul',
+    role: 'Advisor',
     category: 'leadership',
     bio: 'Guiding the club with academic excellence and industry insights.',
     color: 'from-slate-600 to-slate-800',
   },
   {
     id: 2,
-    name: 'President',
+    name: 'Pritam Rangari',
     role: 'President',
     category: 'leadership',
     bio: 'Leading the Web Application Development Club with vision and passion for technology.',
@@ -22,7 +20,7 @@ const teamMembers = [
   },
   {
     id: 3,
-    name: 'Vice President',
+    name: 'Amol Waghmare',
     role: 'Vice-President',
     category: 'leadership',
     bio: 'Supporting club initiatives and fostering innovation across all teams.',
@@ -32,7 +30,7 @@ const teamMembers = [
   // Event Team
   {
     id: 4,
-    name: 'Event Head',
+    name: 'Sahil Ghate',
     role: 'Head - Event Team',
     category: 'event',
     bio: 'Orchestrating memorable tech events, workshops, and hackathons.',
@@ -40,7 +38,7 @@ const teamMembers = [
   },
   {
     id: 5,
-    name: 'Event Joint Head',
+    name: 'Prathmesh Bagbande',
     role: 'Joint Head - Event Team',
     category: 'event',
     bio: 'Co-leading event planning and seamless execution.',
@@ -50,83 +48,43 @@ const teamMembers = [
   // Tech Team
   {
     id: 6,
-    name: 'Swaroop',
+    name: 'Sarthak Deochake',
     role: 'Head - Tech Team',
     category: 'tech',
-    bio: 'Driving technical excellence and innovation in web development. Led multiple successful projects including Timetable Tracker and AI Graveyard.',
+    bio: 'Driving technical excellence and innovation in web development.',
     color: 'from-blue-500 to-cyan-400',
   },
   {
     id: 7,
-    name: 'Ashish Kharde',
+    name: 'Yash Inamdar',
     role: 'Joint Head - Tech Team',
     category: 'tech',
-    bio: 'Building robust applications and mentoring developers. Key contributor to Timetable Tracker, Devrai, and MLSA Club projects.',
+    bio: 'Building robust applications and mentoring developers.',
     color: 'from-cyan-500 to-blue-400',
   },
   
   // Media Team
   {
     id: 8,
-    name: 'Bhumi Shinde',
+    name: 'Prathmesh Dawkar',
     role: 'Head - Media Team',
     category: 'media',
-    bio: 'Creating stunning visuals and managing digital presence. Developer of Jeevan Utsav and Green Club IOIT platforms.',
+    bio: 'Creating stunning visuals and managing digital presence.',
     color: 'from-pink-500 to-rose-400',
-  },
-  {
-    id: 9,
-    name: 'Sarvesh Kolte',
-    role: 'Joint Head - Media Team',
-    category: 'media',
-    bio: 'Crafting engaging content and brand identity. Contributed to Jeevan Utsav and Sahabhag projects.',
-    color: 'from-rose-500 to-pink-400',
   },
   
   // Documentation Team
   {
-    id: 10,
-    name: 'Chinmay Nakwa',
+    id: 9,
+    name: 'Sandesh Shinde',
     role: 'Head - Documentation Team',
     category: 'documentation',
-    bio: 'Ensuring comprehensive documentation and knowledge management. Developer of AI Graveyard and Sahabhag.',
+    bio: 'Ensuring comprehensive documentation and knowledge management.',
     color: 'from-amber-500 to-orange-400',
   },
-  {
-    id: 11,
-    name: 'Pritam Rangari',
-    role: 'Joint Head - Documentation Team',
-    category: 'documentation',
-    bio: 'Maintaining records and creating technical documentation. Key contributor to Devrai and Green Club IOIT.',
-    color: 'from-orange-500 to-amber-400',
-  },
-  
-  // Additional Members
-  {
-    id: 12,
-    name: 'Amol Waghmare',
-    role: 'Core Member - Tech Team',
-    category: 'tech',
-    bio: 'Full-stack developer with expertise in cloud technologies. Developer of Jeevan Utsav and MLSA Club platforms.',
-    color: 'from-indigo-500 to-purple-400',
-  },
-];
-
-const categories = [
-  { id: 'all', name: 'All Members', count: teamMembers.length },
-  { id: 'leadership', name: 'Leadership', count: teamMembers.filter(m => m.category === 'leadership').length },
-  { id: 'tech', name: 'Tech Team', count: teamMembers.filter(m => m.category === 'tech').length },
-  { id: 'event', name: 'Event Team', count: teamMembers.filter(m => m.category === 'event').length },
-  { id: 'media', name: 'Media Team', count: teamMembers.filter(m => m.category === 'media').length },
-  { id: 'documentation', name: 'Documentation', count: teamMembers.filter(m => m.category === 'documentation').length },
 ];
 
 export default function TeamPage() {
-  const [activeCategory, setActiveCategory] = useState('all');
-  
-  const filteredMembers = activeCategory === 'all' 
-    ? teamMembers 
-    : teamMembers.filter(m => m.category === activeCategory);
 
   return (
     <>
@@ -161,27 +119,9 @@ export default function TeamPage() {
       {/* Team Section */}
       <section className="py-16 bg-secondary-50">
         <div className="container-custom">
-          {/* Filter */}
-          <div className="flex items-center gap-3 mb-10 overflow-x-auto pb-4">
-            <Filter className="w-5 h-5 text-secondary-400 flex-shrink-0" />
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                  activeCategory === category.id
-                    ? 'bg-primary-600 text-white shadow-lg'
-                    : 'bg-white text-secondary-600 hover:bg-primary-50 hover:text-primary-600'
-                }`}
-              >
-                {category.name} ({category.count})
-              </button>
-            ))}
-          </div>
-
           {/* Team Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredMembers.map((member) => (
+            {teamMembers.map((member) => (
               <div
                 key={member.id}
                 className="card card-hover group"
@@ -214,79 +154,9 @@ export default function TeamPage() {
                   <p className="text-secondary-600 text-sm mt-3 leading-relaxed">
                     {member.bio}
                   </p>
-
-                  {/* Social Links */}
-                  <div className="flex items-center gap-3 mt-5 pt-5 border-t border-secondary-100">
-                    <a
-                      href="#"
-                      className="w-9 h-9 bg-secondary-100 rounded-lg flex items-center justify-center text-secondary-500 hover:bg-primary-100 hover:text-primary-600 transition-colors"
-                    >
-                      <Linkedin className="w-4 h-4" />
-                    </a>
-                    <a
-                      href="#"
-                      className="w-9 h-9 bg-secondary-100 rounded-lg flex items-center justify-center text-secondary-500 hover:bg-primary-100 hover:text-primary-600 transition-colors"
-                    >
-                      <Github className="w-4 h-4" />
-                    </a>
-                    <a
-                      href="#"
-                      className="w-9 h-9 bg-secondary-100 rounded-lg flex items-center justify-center text-secondary-500 hover:bg-primary-100 hover:text-primary-600 transition-colors"
-                    >
-                      <Mail className="w-4 h-4" />
-                    </a>
-                  </div>
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Team Structure */}
-          <div className="mt-20">
-            <h2 className="text-2xl font-bold text-secondary-900 mb-8 text-center">
-              Club Structure
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { 
-                  team: 'Event Team', 
-                  roles: ['Head', 'Joint Head', 'Coordinators'],
-                  description: 'Organizing workshops, hackathons, and tech talks',
-                  color: 'border-orange-400'
-                },
-                { 
-                  team: 'Tech Team', 
-                  roles: ['Head', 'Joint Head', 'Developers'],
-                  description: 'Building projects and providing technical mentorship',
-                  color: 'border-blue-400'
-                },
-                { 
-                  team: 'Media Team', 
-                  roles: ['Head', 'Joint Head', 'Designers'],
-                  description: 'Managing digital presence and creating content',
-                  color: 'border-pink-400'
-                },
-                { 
-                  team: 'Documentation Team', 
-                  roles: ['Head', 'Joint Head', 'Writers'],
-                  description: 'Maintaining records and creating resources',
-                  color: 'border-amber-400'
-                },
-              ].map((item, index) => (
-                <div key={index} className={`p-6 bg-white rounded-xl border-l-4 ${item.color} shadow-sm`}>
-                  <h4 className="font-bold text-secondary-900 mb-2">{item.team}</h4>
-                  <p className="text-sm text-secondary-600 mb-4">{item.description}</p>
-                  <div className="space-y-1">
-                    {item.roles.map((role, idx) => (
-                      <div key={idx} className="text-sm text-secondary-500 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-primary-400 rounded-full" />
-                        {role}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>

@@ -1,14 +1,20 @@
 # Web Application Development Club Website
 
-A professional, high-performance website for the Web Application Development Club built with Next.js (frontend) and Node.js/Express (backend).
+A professional, high-performance website for the Web Application Development Club at AISSMS IOIT, Pune. Built with Next.js (frontend) and Node.js/Express (backend).
 
-## 🚀 Features
+## 🚀 Live Demo
+
+- **Frontend**: [wad-club-ioit.vercel.app](https://wad-club-ioit.vercel.app)
+- **Backend API**: [wad-club-api.onrender.com](https://wad-club-api.onrender.com)
+
+## ✨ Features
 
 - **Modern Stack**: Next.js 14, React 18, TypeScript, Tailwind CSS
 - **Responsive Design**: Fully responsive across all device sizes
 - **Professional UI**: Corporate-style design with clean aesthetics
-- **Backend API**: Node.js/Express REST API for dynamic data management
-- **Component-Based**: Modular and reusable components
+- **Backend API**: Node.js/Express REST API for data management
+- **Form Integration**: Formspree for contact and membership forms
+- **Static Export**: Pre-rendered pages for fast loading
 
 ## 📁 Project Structure
 
@@ -34,7 +40,7 @@ wad-club-website/
     └── .env
 ```
 
-## 🛠️ Setup Instructions
+## 🛠️ Local Development
 
 ### Prerequisites
 
@@ -104,33 +110,27 @@ wad-club-website/
 
 ## 🎨 Pages
 
-- **Home** (`/`) - Landing page with hero, about, projects, team, and events sections
-- **About** (`/about`) - Club mission, vision, values, and milestones
-- **Team** (`/team`) - Complete team directory with filtering
-- **Projects** (`/projects`) - Project gallery with search and filters
-- **Events** (`/events`) - Upcoming and past events
+- **Home** (`/`) - Landing page with hero, team preview, and events sections
+- **Team** (`/team`) - Complete team directory
+- **Events** (`/events`) - Project showcase by club members
 - **Contact** (`/contact`) - Contact form and information
 - **Join** (`/join`) - Membership application form
+- **Gallery** (`/gallery`) - Photo gallery
 
-## 👥 Featured Projects
+## 👥 Team
 
-1. **Timetable Tracker** - Academic scheduling application
-2. **AI Graveyard** - Archive of discontinued AI projects
-3. **Jeevan Utsav** - Cultural festival management platform
-4. **Devrai** - Environmental conservation platform
-5. **Sahabhag** - Civic engagement platform
-6. **Green Club IOIT** - Sustainability initiatives platform
-7. **MLSA Club** - Microsoft Learn Student Ambassadors portal
+### Leadership
+- **Advisor**: Ganesh Shejul
+- **President**: Pritam Rangari
+- **Vice-President**: Amol Waghmare
 
-## 👨‍💻 Development Team
-
-- Swaroop - Tech Team Head
-- Ashish Kharde - Tech Team Joint Head
-- Bhumi Shinde - Media Team Head
-- Sarvesh Kolte - Media Team Joint Head
-- Chinmay Nakwa - Documentation Team Head
-- Pritam Rangari - Documentation Team Joint Head
-- Amol Waghmare - Core Member
+### Team Heads
+- **Event Head**: Sahil Ghate
+- **Jt. Event Head**: Prathmesh Bagbande
+- **Tech Head**: Sarthak Deochake
+- **Jt. Tech Head**: Yash Inamdar
+- **Media Head**: Prathmesh Dawkar
+- **Doc Head**: Sandesh Shinde
 
 ## 🎨 Color Palette
 
@@ -165,30 +165,141 @@ wad-club-website/
 
 ## 📄 License
 
-This project is created for the Web Application Development Club.
+This project is created for the Web Application Development Club at AISSMS IOIT, Pune.
 
-## 🚀 Deployment
+---
 
-### Frontend - Vercel
+## 🚀 Production Deployment Guide
 
-1. Push the `client` folder to a GitHub repository
-2. Go to [vercel.com](https://vercel.com) and sign in with GitHub
-3. Click "New Project" → Import your repository
-4. Set the root directory to `client`
-5. Framework will be auto-detected as Next.js
-6. Click "Deploy"
+### Step 1: Deploy Frontend to Vercel
 
-### Backend - Render
+1. **Go to Vercel**: Visit [vercel.com](https://vercel.com) and sign in with GitHub
 
-1. Push the `server` folder to a GitHub repository
-2. Go to [render.com](https://render.com) and sign in
-3. Click "New" → "Web Service"
-4. Connect your repository
-5. Set the root directory to `server`
-6. Settings:
-   - **Build Command:** `npm install`
-   - **Start Command:** `node server.js`
-   - **Environment:** Node
+2. **Import Repository**:
+   - Click "Add New..." → "Project"
+   - Select your GitHub repository: `webApplicationDevelopmentClub-IOIT`
+
+3. **Configure Project**:
+   - **Root Directory**: Click "Edit" and set to `client`
+   - **Framework Preset**: Next.js (auto-detected)
+   - **Build Command**: `npm run build` (default)
+   - **Output Directory**: `.next` (default)
+
+4. **Environment Variables** (Optional):
+   - `NEXT_PUBLIC_API_URL`: Your Render backend URL (after deploying backend)
+
+5. **Deploy**: Click "Deploy" and wait for build to complete
+
+6. **Custom Domain** (Optional):
+   - Go to Project Settings → Domains
+   - Add your custom domain
+
+**Your frontend will be live at**: `https://your-project.vercel.app`
+
+---
+
+### Step 2: Deploy Backend to Render
+
+1. **Go to Render**: Visit [render.com](https://render.com) and sign in with GitHub
+
+2. **Create New Web Service**:
+   - Click "New" → "Web Service"
+   - Connect your GitHub repository
+
+3. **Configure Service**:
+   - **Name**: `wad-club-api`
+   - **Root Directory**: `server`
+   - **Environment**: `Node`
+   - **Region**: Singapore (or nearest to your users)
+   - **Branch**: `main`
+   - **Build Command**: `npm install`
+   - **Start Command**: `node server.js`
+
+4. **Environment Variables**:
+   Add these in the "Environment" section:
+   ```
+   NODE_ENV=production
+   PORT=10000
+   FRONTEND_URL=https://your-vercel-app.vercel.app
+   ```
+
+5. **Deploy**: Click "Create Web Service"
+
+**Your API will be live at**: `https://wad-club-api.onrender.com`
+
+---
+
+### Step 3: Configure CORS (Already Done)
+
+The backend is already configured with production CORS settings in `server.js`:
+
+```javascript
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://wad-club-ioit.vercel.app',
+  process.env.FRONTEND_URL
+].filter(Boolean);
+```
+
+Update `FRONTEND_URL` on Render with your actual Vercel URL.
+
+---
+
+### Step 4: Update Frontend API URL (If Using Backend)
+
+If you want the frontend to fetch from the backend API, create a `.env.local` file in `client/`:
+
+```env
+NEXT_PUBLIC_API_URL=https://wad-club-api.onrender.com
+```
+
+---
+
+### Step 5: Verify Deployment
+
+1. **Test Frontend**:
+   - Visit your Vercel URL
+   - Navigate through all pages (Home, Team, Events, Contact, Join)
+   - Test the contact and join forms (they use Formspree)
+
+2. **Test Backend API**:
+   - Visit `https://your-render-url.onrender.com/api/health`
+   - Should return: `{"status":"OK","message":"Web Application Development Club API is running"}`
+
+3. **Test CORS**:
+   - Open browser console on frontend
+   - Make an API request to backend
+   - Ensure no CORS errors
+
+---
+
+### Important Notes
+
+⚠️ **Render Free Tier**: The backend will spin down after 15 minutes of inactivity. First request after inactivity may take 30-50 seconds.
+
+⚠️ **Formspree**: Contact and Join forms already use Formspree (`https://formspree.io/f/mykpawbo`). Form submissions will be sent to your Formspree account.
+
+⚠️ **Static Site**: The frontend is a static Next.js site. Team and Events data is hardcoded in the frontend pages (not fetched from API) for faster loading.
+
+---
+
+## 🔧 Maintenance
+
+### Updating Team Members
+Edit: `client/src/pages/team.tsx` → `teamMembers` array
+
+### Updating Projects
+Edit: `client/src/pages/events.tsx` → `projects` array
+
+### Updating Footer
+Edit: `client/src/components/layout/Footer.tsx`
+
+### Redeploying
+Push changes to GitHub. Vercel and Render will auto-deploy from the `main` branch.
+
+---
+
+Made with ❤️ by **Pritam Rangari** for WAD Club, AISSMS IOIT Pune
 7. Click "Create Web Service"
 
 ---
