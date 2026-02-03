@@ -22,11 +22,26 @@ export default function JoinPage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      const response = await fetch('https://formspree.io/f/mykpawbo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          _subject: `New Club Membership Application: ${formData.name}`,
+        }),
+      });
+      
+      if (response.ok) {
+        setIsSubmitted(true);
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+    }
     
     setIsSubmitting(false);
-    setIsSubmitted(true);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -190,12 +205,12 @@ export default function JoinPage() {
                         className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all"
                       >
                         <option value="">Select Branch</option>
-                        <option value="cse">Computer Science</option>
-                        <option value="it">Information Technology</option>
-                        <option value="entc">Electronics & Telecom</option>
-                        <option value="mech">Mechanical</option>
-                        <option value="civil">Civil</option>
-                        <option value="other">Other</option>
+                        <option value="cs">Computer Science (CS)</option>
+                        <option value="it">Information Technology (IT)</option>
+                        <option value="aids">AI & Data Science (AIDS)</option>
+                        <option value="entc">Electronics & Telecom (ENTC)</option>
+                        <option value="electrical">Electrical</option>
+                        <option value="instrumentation">Instrumentation</option>
                       </select>
                     </div>
                   </div>
