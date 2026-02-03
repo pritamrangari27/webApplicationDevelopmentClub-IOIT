@@ -30,7 +30,7 @@ const teamMembers = [
   // Event Team
   {
     id: 4,
-    name: 'Sahil Ghate',
+    name: 'Prathmesh Bagbande',
     role: 'Head - Event Team',
     category: 'event',
     bio: 'Orchestrating memorable tech events, workshops, and hackathons.',
@@ -38,7 +38,7 @@ const teamMembers = [
   },
   {
     id: 5,
-    name: 'Prathmesh Bagbande',
+    name: 'Sahil Ghate',
     role: 'Joint Head - Event Team',
     category: 'event',
     bio: 'Co-leading event planning and seamless execution.',
