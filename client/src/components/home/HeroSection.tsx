@@ -43,7 +43,7 @@ export default function HeroSection() {
 
           {/* Subheading */}
           <p className="text-lg sm:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            EmpoweringPritam students to build innovative web applications through 
+            Empowering students to build innovative web applications through 
             hands-on learning, collaborative projects, and industry-standard practices.
           </p>
 
