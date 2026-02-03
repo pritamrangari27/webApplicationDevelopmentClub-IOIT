@@ -1,16 +1,13 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import { X, ChevronLeft, ChevronRight, Filter, Calendar, ZoomIn } from 'lucide-react';
-import { galleryImages, galleryCategories, GalleryImage } from '@/data/galleryData';
+import { X, ChevronLeft, ChevronRight, Calendar, ZoomIn } from 'lucide-react';
+import { galleryImages, GalleryImage } from '@/data/galleryData';
 
 export default function GalleryPage() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
-  const filteredImages = selectedCategory === 'All'
-    ? galleryImages
-    : galleryImages.filter(img => img.category === selectedCategory);
+  const filteredImages = galleryImages;
 
   const currentIndex = selectedImage ? filteredImages.findIndex(img => img.id === selectedImage.id) : -1;
 
@@ -65,29 +62,6 @@ export default function GalleryPage() {
       {/* Gallery Section */}
       <section className="py-16 bg-secondary-50">
         <div className="container-custom">
-          {/* Filter */}
-          <div className="flex items-center gap-3 mb-10 overflow-x-auto pb-4">
-            <Filter className="w-5 h-5 text-secondary-400 flex-shrink-0" />
-            {galleryCategories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                  selectedCategory === category
-                    ? 'bg-primary-600 text-white shadow-lg'
-                    : 'bg-white text-secondary-600 hover:bg-primary-50 hover:text-primary-600'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
-          {/* Results count */}
-          <p className="text-secondary-600 mb-6">
-            Showing {filteredImages.length} photos
-          </p>
-
           {/* Gallery Grid */}
           {filteredImages.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
