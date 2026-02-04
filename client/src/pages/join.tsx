@@ -51,25 +51,21 @@ export default function JoinPage() {
       // Save to Google Sheets
       const googleSheetsUrl = 'https://script.google.com/macros/s/AKfycbzD4T_TF0-ZVFD6bxYgXNCXaLoZuKcF9cCzEUHU7RKGmL7uLigBYd0gVzlMKxIvW12Z/exec';
       
-      // Create URL encoded data for Google Sheets
-      const sheetsData = new URLSearchParams();
-      sheetsData.append('user_name', formData.name);
-      sheetsData.append('user_email', formData.email);
-      sheetsData.append('phone', formData.phone);
-      sheetsData.append('branch', formData.branch);
-      sheetsData.append('year', formData.year);
-      sheetsData.append('division', formData.division);
-      sheetsData.append('linkedin', formData.linkedin || 'Not provided');
-      sheetsData.append('github', formData.github || 'Not provided');
-      
-      fetch(googleSheetsUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: sheetsData.toString(),
+      // Create URL with query parameters for Google Sheets
+      const params = new URLSearchParams({
+        user_name: formData.name,
+        user_email: formData.email,
+        phone: formData.phone,
+        branch: formData.branch,
+        year: formData.year,
+        division: formData.division,
+        linkedin: formData.linkedin || 'Not provided',
+        github: formData.github || 'Not provided',
       });
+      
+      // Use image trick to send data (works around CORS)
+      const img = new Image();
+      img.src = `${googleSheetsUrl}?${params.toString()}`;
       
       setIsSubmitted(true);
     } catch (error) {
