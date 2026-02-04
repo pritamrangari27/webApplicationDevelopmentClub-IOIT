@@ -35,14 +35,26 @@ export default function Navbar() {
       <nav className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="w-11 h-11 bg-primary-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all">
-              <Globe className="w-6 h-6 text-white" />
-            </div>
-            <span className={`text-sm font-medium hidden sm:block ${scrolled ? 'text-primary-600' : 'text-white'}`}>
-              Web Application Development Club
-            </span>
-          </Link>
+          <div className="flex items-center space-x-3">
+            <a 
+              href="https://aissmsioit.org/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group"
+            >
+              <div className="w-11 h-11 bg-primary-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all">
+                <Globe className="w-6 h-6 text-white" />
+              </div>
+            </a>
+            <a 
+              href="https://aissmsioit.org/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`text-sm font-medium hidden sm:block hover:underline transition-all ${scrolled ? 'text-primary-600' : 'text-white'}`}
+            >
+              AISSMS Institute of Information Technology, Pune
+            </a>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">

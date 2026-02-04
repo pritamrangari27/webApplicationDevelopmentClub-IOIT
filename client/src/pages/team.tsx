@@ -2,6 +2,16 @@ import Head from 'next/head';
 import Image from 'next/image';
 
 const teamMembers = [
+  // Faculty
+  {
+    id: 0,
+    name: 'Dr. Reshma Totare',
+    role: 'Faculty Co-ordinator',
+    category: 'leadership',
+    bio: 'Faculty coordinator guiding and mentoring the Web Application Development Club.',
+    color: 'from-purple-600 to-purple-800',
+    image: null,
+  },
   // Leadership
   {
     id: 1,

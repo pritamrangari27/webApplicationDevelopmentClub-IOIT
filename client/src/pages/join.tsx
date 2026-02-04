@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import { CheckCircle, ArrowRight } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export default function JoinPage() {
   const [formData, setFormData] = useState({
@@ -9,10 +10,9 @@ export default function JoinPage() {
     phone: '',
     branch: '',
     year: '',
-    track: '',
-    experience: '',
+    division: '',
     motivation: '',
-    portfolio: '',
+    linkedin: '',
     github: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,22 +23,30 @@ export default function JoinPage() {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('https://formspree.io/f/mykpawbo', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          _subject: `New Club Membership Application: ${formData.name}`,
-        }),
-      });
+      // EmailJS Configuration - Replace with your actual credentials
+      const serviceId = 'YOUR_SERVICE_ID';
+      const templateId = 'YOUR_JOIN_TEMPLATE_ID';
+      const publicKey = 'YOUR_PUBLIC_KEY';
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        branch: formData.branch,
+        year: formData.year,
+        division: formData.division,
+        motivation: formData.motivation,
+        linkedin: formData.linkedin || 'Not provided',
+        github: formData.github || 'Not provided',
+        to_email: 'info.wadclub@gmail.com',
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
       
-      if (response.ok) {
-        setIsSubmitted(true);
-      }
+      setIsSubmitted(true);
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error('EmailJS Error:', error);
+      alert('Failed to submit application. Please try again.');
     }
     
     setIsSubmitting(false);
@@ -57,42 +65,91 @@ export default function JoinPage() {
         <Head>
           <title>Application Submitted | Web Application Development Club</title>
         </Head>
-        <section className="min-h-screen flex items-center justify-center bg-secondary-50 pt-20">
-          <div className="container-custom">
-            <div className="max-w-2xl mx-auto text-center">
-              <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8">
-                <CheckCircle className="w-12 h-12 text-green-600" />
+        <section className="min-h-screen flex items-center justify-center gradient-bg pt-20 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl" />
+            <div className="absolute bottom-10 right-10 w-96 h-96 bg-accent-400 rounded-full blur-3xl" />
+          </div>
+          
+          <div className="container-custom relative z-10">
+            <div className="max-w-3xl mx-auto">
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                {/* Success Header */}
+                <div className="bg-gradient-to-r from-green-500 to-emerald-600 px-8 py-12 text-center">
+                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <CheckCircle className="w-12 h-12 text-green-600" />
+                  </div>
+                  <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
+                    Application Submitted Successfully!
+                  </h1>
+                  <p className="text-green-50 text-lg">
+                    Welcome to the journey of becoming a club member
+                  </p>
+                </div>
+
+                {/* Content */}
+                <div className="px-8 py-10">
+                  <div className="text-center mb-8">
+                    <p className="text-lg text-secondary-700 leading-relaxed">
+                      Thank you for your interest in joining the <span className="font-semibold text-primary-600">Web Application Development Club</span>. Our team will carefully review your application and get back to you within <span className="font-semibold">3-5 business days</span>.
+                    </p>
+                  </div>
+
+                  {/* Next Steps */}
+                  <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-2xl p-8 mb-8">
+                    <h3 className="text-xl font-bold text-secondary-900 mb-6 flex items-center gap-2">
+                      <span className="w-8 h-8 bg-primary-600 text-white rounded-lg flex items-center justify-center text-sm">📋</span>
+                      What Happens Next?
+                    </h3>
+                    <div className="space-y-5">
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-md">1</div>
+                        <div className="pt-1">
+                          <h4 className="font-semibold text-secondary-900 mb-1">Application Review</h4>
+                          <p className="text-secondary-600 text-sm">Our team will carefully evaluate your application and qualifications</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-md">2</div>
+                        <div className="pt-1">
+                          <h4 className="font-semibold text-secondary-900 mb-1">Interview (If Required)</h4>
+                          <p className="text-secondary-600 text-sm">You may be invited for a brief interaction to learn more about you</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-md">3</div>
+                        <div className="pt-1">
+                          <h4 className="font-semibold text-secondary-900 mb-1">Acceptance Notification</h4>
+                          <p className="text-secondary-600 text-sm">Upon acceptance, you'll receive a welcome email with next steps</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-md">4</div>
+                        <div className="pt-1">
+                          <h4 className="font-semibold text-secondary-900 mb-1">Onboarding Session</h4>
+                          <p className="text-secondary-600 text-sm">Join our onboarding session and officially start your journey with us!</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a 
+                      href="/" 
+                      className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all shadow-lg hover:shadow-xl"
+                    >
+                      ← Back to Home
+                    </a>
+                    <a 
+                      href="/events" 
+                      className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border-2 border-primary-600 text-primary-600 font-semibold rounded-xl hover:bg-primary-50 transition-all"
+                    >
+                      Explore Projects
+                    </a>
+                  </div>
+                </div>
               </div>
-              <h1 className="text-4xl font-bold text-secondary-900 mb-4">
-                Application Submitted Successfully!
-              </h1>
-              <p className="text-xl text-secondary-600 mb-8">
-                Thank you for your interest in joining the Web Application Development Club. Our team will review your application and get back to you within 3-5 business days.
-              </p>
-              <div className="bg-white rounded-2xl p-8 shadow-lg text-left">
-                <h3 className="font-semibold text-secondary-900 mb-4">What's Next?</h3>
-                <ol className="space-y-3 text-secondary-600">
-                  <li className="flex items-start gap-3">
-                    <span className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 font-semibold text-sm flex-shrink-0">1</span>
-                    <span>Our team will review your application</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 font-semibold text-sm flex-shrink-0">2</span>
-                    <span>You may be invited for a brief interaction</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 font-semibold text-sm flex-shrink-0">3</span>
-                    <span>Upon acceptance, you'll receive a welcome email with next steps</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 font-semibold text-sm flex-shrink-0">4</span>
-                    <span>Join our onboarding session and start your journey!</span>
-                  </li>
-                </ol>
-              </div>
-              <a href="/" className="inline-flex items-center gap-2 mt-8 text-primary-600 hover:text-primary-700 font-medium">
-                ← Back to Home
-              </a>
             </div>
           </div>
         </section>
@@ -153,7 +210,7 @@ export default function JoinPage() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-secondary-700 mb-2">
-                        Full Name *
+                        Full Name
                       </label>
                       <input
                         type="text"
@@ -162,12 +219,12 @@ export default function JoinPage() {
                         value={formData.name}
                         onChange={handleChange}
                         className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all placeholder:text-secondary-400"
-                        placeholder="John Doe"
+                        placeholder="Enter Full Name"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-secondary-700 mb-2">
-                        Email Address *
+                        Email Address
                       </label>
                       <input
                         type="email"
@@ -176,12 +233,12 @@ export default function JoinPage() {
                         value={formData.email}
                         onChange={handleChange}
                         className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all placeholder:text-secondary-400"
-                        placeholder="john@example.com"
+                        placeholder="Enter Email Address"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-secondary-700 mb-2">
-                        Phone Number *
+                        Phone Number
                       </label>
                       <input
                         type="tel"
@@ -190,12 +247,12 @@ export default function JoinPage() {
                         value={formData.phone}
                         onChange={handleChange}
                         className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all placeholder:text-secondary-400"
-                        placeholder="+91 XXXXX XXXXX"
+                        placeholder="Enter Phone Number"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-secondary-700 mb-2">
-                        Branch *
+                        Branch
                       </label>
                       <select
                         name="branch"
@@ -224,7 +281,7 @@ export default function JoinPage() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-secondary-700 mb-2">
-                        Current Year *
+                        Current Year
                       </label>
                       <select
                         name="year"
@@ -242,38 +299,20 @@ export default function JoinPage() {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-secondary-700 mb-2">
-                        Preferred Track *
+                        Division
                       </label>
                       <select
-                        name="track"
+                        name="division"
                         required
-                        value={formData.track}
+                        value={formData.division}
                         onChange={handleChange}
                         className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all"
                       >
-                        <option value="">Select Track</option>
-                        <option value="developer">Developer Track</option>
-                        <option value="design">Design Track</option>
-                        <option value="management">Management Track</option>
+                        <option value="">Select Division</option>
+                        <option value="A">Division A</option>
+                        <option value="B">Division B</option>
                       </select>
                     </div>
-                  </div>
-                  <div className="mt-6">
-                    <label className="block text-sm font-medium text-secondary-700 mb-2">
-                      Programming Experience Level *
-                    </label>
-                    <select
-                      name="experience"
-                      required
-                      value={formData.experience}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all"
-                    >
-                      <option value="">Select Experience Level</option>
-                      <option value="beginner">Beginner - Just starting out</option>
-                      <option value="intermediate">Intermediate - Built some projects</option>
-                      <option value="advanced">Advanced - Experienced developer</option>
-                    </select>
                   </div>
                 </div>
 
@@ -285,7 +324,7 @@ export default function JoinPage() {
                   <div className="space-y-6">
                     <div>
                       <label className="block text-sm font-medium text-secondary-700 mb-2">
-                        Why do you want to join Web Application Development Club? *
+                        Why do you want to join Web Application Development Club?
                       </label>
                       <textarea
                         name="motivation"
@@ -294,26 +333,26 @@ export default function JoinPage() {
                         value={formData.motivation}
                         onChange={handleChange}
                         className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all resize-none placeholder:text-secondary-400"
-                        placeholder="Tell us about your motivation and what you hope to achieve..."
+                        placeholder="Enter your motivation and what you hope to achieve"
                       />
                     </div>
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-medium text-secondary-700 mb-2">
-                          Portfolio URL (optional)
+                          LinkedIn Profile
                         </label>
                         <input
                           type="url"
-                          name="portfolio"
-                          value={formData.portfolio}
+                          name="linkedin"
+                          value={formData.linkedin}
                           onChange={handleChange}
                           className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all placeholder:text-secondary-400"
-                          placeholder="https://yourportfolio.com"
+                          placeholder="Enter LinkedIn Profile URL"
                         />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-secondary-700 mb-2">
-                          GitHub Profile (optional)
+                          GitHub Profile
                         </label>
                         <input
                           type="url"
@@ -321,7 +360,7 @@ export default function JoinPage() {
                           value={formData.github}
                           onChange={handleChange}
                           className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all placeholder:text-secondary-400"
-                          placeholder="https://github.com/username"
+                          placeholder="Enter GitHub Profile URL"
                         />
                       </div>
                     </div>
