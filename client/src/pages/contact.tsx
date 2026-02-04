@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import { Mail, MapPin, Phone, Send, Clock, CheckCircle } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -18,26 +17,29 @@ export default function ContactPage() {
     setIsSubmitting(true);
     
     try {
-      // EmailJS Configuration - Replace with your actual credentials
-      const serviceId = 'YOUR_SERVICE_ID';
-      const templateId = 'YOUR_CONTACT_TEMPLATE_ID';
-      const publicKey = 'YOUR_PUBLIC_KEY';
+      // Formspree endpoint
+      const response = await fetch('https://formspree.io/f/mykpawbo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
 
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: 'info.wadclub@gmail.com',
-      };
-
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
-      
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setIsSubmitted(false), 5000);
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        throw new Error('Failed to send');
+      }
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error('Formspree Error:', error);
       alert('Failed to send message. Please try again.');
     }
     
