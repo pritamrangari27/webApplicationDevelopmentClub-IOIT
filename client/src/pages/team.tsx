@@ -20,7 +20,7 @@ const teamMembers = [
     category: 'leadership',
     bio: 'Guiding the club with academic excellence and industry insights.',
     color: 'from-slate-600 to-slate-800',
-    image: '/images/team/Ganesh.jpg',
+    image: '/images/team/Ganesh.jpeg',
   },
   {
     id: 2,
