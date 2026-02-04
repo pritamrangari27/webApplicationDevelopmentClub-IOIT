@@ -69,7 +69,7 @@ const teamMembers = [
     category: 'tech',
     bio: 'Driving technical excellence and innovation in web development.',
     color: 'from-blue-500 to-cyan-400',
-    image:'/images/team/Sarthak.jpg',
+    image:'/images/team/Sarthak.png',
   },
   {
     id: 7,
@@ -89,7 +89,7 @@ const teamMembers = [
     category: 'media',
     bio: 'Creating stunning visuals and managing digital presence.',
     color: 'from-pink-500 to-rose-400',
-    image: '/images/team/PrathmeshD.jpg',
+    image: '/images/team/PrathmeshD.jpeg',
   },
   
   // Documentation Team
