@@ -89,19 +89,24 @@ export default function GalleryPage() {
                   {/* Info */}
                   <div className="p-4">
                     <span className="text-xs font-semibold text-primary-600 uppercase tracking-wider">
-                      {image.category}
+                      {image.category || 'Project'}
                     </span>
                     <h3 className="font-semibold text-secondary-900 mt-1 line-clamp-1">
                       {image.title}
                     </h3>
-                    <div className="flex items-center gap-2 text-sm text-secondary-500 mt-2">
-                      <Calendar className="w-4 h-4" />
-                      <span>{new Date(image.date).toLocaleDateString('en-IN', { 
-                        day: 'numeric', 
-                        month: 'short', 
-                        year: 'numeric' 
-                      })}</span>
-                    </div>
+                    <p className="text-sm text-secondary-600 mt-1 line-clamp-2">
+                      Team: {image.team.join(', ')}
+                    </p>
+                    {image.date && (
+                      <div className="flex items-center gap-2 text-sm text-secondary-500 mt-2">
+                        <Calendar className="w-4 h-4" />
+                        <span>{new Date(image.date).toLocaleDateString('en-IN', { 
+                          day: 'numeric', 
+                          month: 'short', 
+                          year: 'numeric' 
+                        })}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -173,15 +178,18 @@ export default function GalleryPage() {
               <h3 className="text-xl font-semibold text-white mb-2">
                 {selectedImage.title}
               </h3>
+              <p className="text-white/70 mb-2">
+                Team: {selectedImage.team.join(', ')}
+              </p>
               {selectedImage.description && (
-                <p className="text-white/70 mb-2">{selectedImage.description}</p>
+                <p className="text-white/60 mb-2">{selectedImage.description}</p>
               )}
               <p className="text-white/50 text-sm">
-                {selectedImage.category} • {new Date(selectedImage.date).toLocaleDateString('en-IN', { 
+                {selectedImage.category || 'Project'} {selectedImage.date && `• ${new Date(selectedImage.date).toLocaleDateString('en-IN', { 
                   day: 'numeric', 
                   month: 'long', 
                   year: 'numeric' 
-                })}
+                })}`}
               </p>
               <p className="text-white/40 text-sm mt-2">
                 {currentIndex + 1} of {filteredImages.length}
