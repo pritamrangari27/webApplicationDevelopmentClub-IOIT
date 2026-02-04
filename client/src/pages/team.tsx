@@ -10,7 +10,7 @@ const teamMembers = [
     category: 'leadership',
     bio: 'Faculty coordinator guiding and mentoring the Web Application Development Club.',
     color: 'from-purple-600 to-purple-800',
-    image: null,
+     image:'/images/team/TotareMam.jpg',
   },
   // Leadership
   {
@@ -20,7 +20,7 @@ const teamMembers = [
     category: 'leadership',
     bio: 'Guiding the club with academic excellence and industry insights.',
     color: 'from-slate-600 to-slate-800',
-    image: null,
+    image: '/images/team/Ganesh.jpg',
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const teamMembers = [
     category: 'leadership',
     bio: 'Leading the Web Application Development Club with vision and passion for technology.',
     color: 'from-primary-600 to-primary-800',
-    image: '/images/team/Pritam Rangari.jpg',
+    image: '/images/team/Pritam.jpg',
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ const teamMembers = [
     category: 'leadership',
     bio: 'Supporting club initiatives and fostering innovation across all teams.',
     color: 'from-primary-500 to-accent-500',
-    image: '/images/team/Amol Waghmare.jpg',
+    image: '/images/team/Amol.jpg',
   },
   
   // Event Team
@@ -49,7 +49,7 @@ const teamMembers = [
     category: 'event',
     bio: 'Orchestrating memorable tech events, workshops, and hackathons.',
     color: 'from-orange-500 to-red-400',
-    image: null,
+    image: '/images/team/PrathmeshB.jpg',
   },
   {
     id: 5,
@@ -58,7 +58,7 @@ const teamMembers = [
     category: 'event',
     bio: 'Co-leading event planning and seamless execution.',
     color: 'from-red-500 to-orange-400',
-    image: null,
+    image:'/images/team/Sahil.jpg',
   },
   
   // Tech Team
@@ -69,7 +69,7 @@ const teamMembers = [
     category: 'tech',
     bio: 'Driving technical excellence and innovation in web development.',
     color: 'from-blue-500 to-cyan-400',
-    image: null,
+    image:'/images/team/Sarthak.jpg',
   },
   {
     id: 7,
@@ -78,7 +78,7 @@ const teamMembers = [
     category: 'tech',
     bio: 'Building robust applications and mentoring developers.',
     color: 'from-cyan-500 to-blue-400',
-    image: null,
+     image:'/images/team/Yash.jpg',
   },
   
   // Media Team
@@ -89,7 +89,7 @@ const teamMembers = [
     category: 'media',
     bio: 'Creating stunning visuals and managing digital presence.',
     color: 'from-pink-500 to-rose-400',
-    image: '/images/team/Prathmesh Dawkar.jpg',
+    image: '/images/team/PrathmeshD.jpg',
   },
   
   // Documentation Team
@@ -100,7 +100,7 @@ const teamMembers = [
     category: 'documentation',
     bio: 'Ensuring comprehensive documentation and knowledge management.',
     color: 'from-amber-500 to-orange-400',
-    image: '/images/team/Sandesh Shinde.jpg',
+    image: '/images/team/Sandesh.jpg',
   },
   {
     id: 10,
@@ -109,7 +109,7 @@ const teamMembers = [
     category: 'documentation',
     bio: 'Maintaining records and creating technical documentation.',
     color: 'from-orange-500 to-amber-400',
-    image: '/images/team/Niraj-Shevade.jpg',
+    image: '/images/team/Niraj.jpg',
   },
 ];
 
