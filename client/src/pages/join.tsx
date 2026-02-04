@@ -25,7 +25,8 @@ export default function JoinPage() {
     try {
       // EmailJS Configuration
       const serviceId = 'service_ixgszfs';
-      const templateId = 'template_gjupefu';
+      const adminTemplateId = 'template_gjupefu';
+      const autoReplyTemplateId = 'template_9w8ppaa';
       const publicKey = 'RA-0v0dIP3b3MhmJ9';
 
       const templateParams = {
@@ -41,7 +42,11 @@ export default function JoinPage() {
         to_email: 'info.wadclub@gmail.com',
       };
 
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      // Send admin notification
+      await emailjs.send(serviceId, adminTemplateId, templateParams, publicKey);
+      
+      // Send auto-reply to user
+      await emailjs.send(serviceId, autoReplyTemplateId, templateParams, publicKey);
       
       setIsSubmitted(true);
     } catch (error) {
