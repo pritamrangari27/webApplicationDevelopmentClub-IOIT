@@ -267,12 +267,12 @@ export default function JoinPage() {
                         className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all"
                       >
                         <option value="">Select Branch</option>
-                        <option value="cs">Computer Science (CS)</option>
-                        <option value="it">Information Technology (IT)</option>
-                        <option value="aids">AI & Data Science (AIDS)</option>
-                        <option value="entc">Electronics & Telecom (ENTC)</option>
-                        <option value="electrical">Electrical</option>
-                        <option value="instrumentation">Instrumentation</option>
+                        <option value="CS">Computer Science (CS)</option>
+                        <option value="IT">Information Technology (IT)</option>
+                        <option value="AIDS">AI & Data Science (AIDS)</option>
+                        <option value="ENTC">Electronics & Telecom (ENTC)</option>
+                        <option value="ELECTRICAL">Electrical</option>
+                        <option value="INSTRUMENTATION">Instrumentation</option>
                       </select>
                     </div>
                   </div>
@@ -296,10 +296,10 @@ export default function JoinPage() {
                         className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all"
                       >
                         <option value="">Select Year</option>
-                        <option value="1">First Year</option>
-                        <option value="2">Second Year</option>
-                        <option value="3">Third Year</option>
-                        <option value="4">Final Year</option>
+                        <option value="FIRST">First Year</option>
+                        <option value="SECOND">Second Year</option>
+                        <option value="THIRD">Third Year</option>
+                        <option value="FOURTH">Final Year</option>
                       </select>
                     </div>
                     <div>
