@@ -3,9 +3,7 @@ export interface GalleryImage {
   id: number;
   src: string;
   title: string;
-  category: string;
-  date: string;
-  description?: string;
+  team: string;
 }
 
 export const galleryImages: GalleryImage[] = [
@@ -22,60 +20,51 @@ export const galleryImages: GalleryImage[] = [
   // Sample entries (replace with actual photos):
   {
     id: 1,
-    src: '/images/eventPhotos/sample-1.jpg',
-    title: 'Club Inauguration',
-    category: 'General',
-    date: '2024-01-15',
-    description: 'Official inauguration ceremony of the Web Application Development Club'
+    src: '/images/eventPhotos/event1.jpg',
+    title: 'Philants',
+    team: 'Anushka Gaikwad', 'Akshat Bhosale', 'Sarthak Deochake', 'Ashish Kharde','Chinmay Nakwa', 'Swaroop Patil'
   },
   {
     id: 2,
-    src: '/images/eventPhotos/sample-2.jpg',
-    title: 'Web Development Workshop',
-    category: 'Workshop',
-    date: '2024-02-20',
-    description: 'Hands-on workshop on modern web technologies'
+    src: '/images/eventPhotos/event2.jpg',
+    title: 'Green Club IOIT',
+    team: 'Chinmay Nakwa'
   },
   {
     id: 3,
-    src: '/images/eventPhotos/sample-3.jpg',
-    title: 'Hackathon 2024',
-    category: 'Hackathon',
-    date: '2024-03-15',
-    description: 'Students collaborating during 24-hour hackathon'
+    src: '/images/eventPhotos/event3.jpg',
+    title: 'Website',
+    team: 'Swaroop Patil','Ashish Kharde'
   },
   {
     id: 4,
-    src: '/images/eventPhotos/sample-4.jpg',
-    title: 'Tech Talk Session',
-    category: 'Tech Talk',
-    date: '2024-04-10',
-    description: 'Industry expert sharing insights on cloud computing'
+    src: '/images/eventPhotos/event4.jpg',
+    title: 'AI Graveyard',
+    team: 'Swaroop Patil'
   },
   {
     id: 5,
-    src: '/images/eventPhotos/sample-5.jpg',
-    title: 'Team Building Event',
-    category: 'Team',
-    date: '2024-05-20',
-    description: 'Club members during team building activities'
+    src: '/images/eventPhotos/event5.jpg',
+    title: 'Jeevan',
+    team: 'Swaroop Patil', 'Bhumi Shinde'
   },
   {
     id: 6,
-    src: '/images/eventPhotos/sample-6.jpg',
-    title: 'Project Showcase',
-    category: 'Event',
-    date: '2024-06-15',
-    description: 'Students presenting their web development projects'
+    src: '/images/eventPhotos/event6.jpg',
+    title: 'Devrai',
+    team: 'Sarvesh Kolte'
+  },
+    {
+    id: 7,
+    src: '/images/eventPhotos/event7.jpg',
+    title: 'Sahabhag',
+    team: 'Swaroop Patil'
+  },
+    {
+    id: 8,
+    src: '/images/eventPhotos/event8.jpg',
+    title: 'MLSA Club IOIT',
+    team: 'Pritam Rangari','Amol Waghmare',
   },
 ];
 
-export const galleryCategories = [
-  'All',
-  'Workshop',
-  'Hackathon',
-  'Tech Talk',
-  'Team',
-  'Event',
-  'General'
-];
