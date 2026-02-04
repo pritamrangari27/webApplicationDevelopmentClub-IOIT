@@ -78,7 +78,7 @@ const teamMembers = [
     category: 'tech',
     bio: 'Building robust applications and mentoring developers.',
     color: 'from-cyan-500 to-blue-400',
-     image:'/images/team/Yash.jpg',
+     image:'/images/team/Yash.jpeg',
   },
   
   // Media Team
@@ -89,7 +89,7 @@ const teamMembers = [
     category: 'media',
     bio: 'Creating stunning visuals and managing digital presence.',
     color: 'from-pink-500 to-rose-400',
-    image: '/images/team/PrathmeshD.jpeg',
+    image: '/images/team/PrathmeshD.jpg',
   },
   
   // Documentation Team
