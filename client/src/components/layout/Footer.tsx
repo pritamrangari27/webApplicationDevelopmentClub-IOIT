@@ -60,11 +60,11 @@ export default function Footer() {
                 <span>AISSMS IOIT, Kennedy Road,<br />Pune - 411001, Maharashtra</span>
               </div>
               <a 
-                href="mailto:principal@aissmsioit.org" 
+                href="mailto:info.wadclub@gmail.com" 
                 className="flex items-center gap-2 text-secondary-400 hover:text-primary-400 transition-colors text-sm md:justify-end"
               >
                 <Mail className="w-4 h-4 text-primary-400" />
-                <span>principal@aissmsioit.org</span>
+                <span>info.wadclub@gmail.com</span>
               </a>
             </div>
           </div>

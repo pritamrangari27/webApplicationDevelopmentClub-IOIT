@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import { Mail, MapPin, Phone, Send, Clock, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -17,24 +18,27 @@ export default function ContactPage() {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('https://formspree.io/f/mykpawbo', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          _subject: `Contact Form: ${formData.subject}`,
-        }),
-      });
+      // EmailJS Configuration - Replace with your actual credentials
+      const serviceId = 'YOUR_SERVICE_ID';
+      const templateId = 'YOUR_CONTACT_TEMPLATE_ID';
+      const publicKey = 'YOUR_PUBLIC_KEY';
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'info.wadclub@gmail.com',
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
       
-      if (response.ok) {
-        setIsSubmitted(true);
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        setTimeout(() => setIsSubmitted(false), 5000);
-      }
+      setIsSubmitted(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error('EmailJS Error:', error);
+      alert('Failed to send message. Please try again.');
     }
     
     setIsSubmitting(false);
@@ -110,8 +114,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-secondary-900 mb-1">Email</h3>
-                    <a href="mailto:principal@aissmsioit.org" className="text-primary-600 hover:text-primary-700 text-sm">
-                      principal@aissmsioit.org
+                    <a href="mailto:info.wadclub@gmail.com" className="text-primary-600 hover:text-primary-700 text-sm">
+                      info.wadclub@gmail.com
                     </a>
                   </div>
                 </div>
@@ -136,7 +140,7 @@ export default function ContactPage() {
                     <h3 className="font-semibold text-secondary-900 mb-1">Office Hours</h3>
                     <p className="text-secondary-600 text-sm">
                       Monday - Friday<br />
-                      10:00 AM - 5:00 PM IST
+                      8:00 AM - 4:30 PM IST
                     </p>
                   </div>
                 </div>
@@ -154,23 +158,46 @@ export default function ContactPage() {
                 </div>
 
                 {isSubmitted ? (
-                  <div className="text-center py-12">
-                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle className="w-8 h-8 text-green-600" />
+                  <div className="py-12">
+                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border-2 border-green-200">
+                      <div className="text-center">
+                        <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                          <CheckCircle className="w-10 h-10 text-white" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-secondary-900 mb-3">
+                          Message Sent Successfully!
+                        </h3>
+                        <p className="text-secondary-700 text-lg mb-6 leading-relaxed">
+                          Thank you for reaching out to us. We appreciate you taking the time to contact the <span className="font-semibold text-primary-600">Web Application Development Club</span>.
+                        </p>
+                        <div className="bg-white rounded-xl p-6 mb-6 shadow-sm">
+                          <div className="flex items-center justify-center gap-3 text-secondary-600">
+                            <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
+                              <svg className="w-6 h-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                            </div>
+                            <div className="text-left">
+                              <p className="font-semibold text-secondary-900">Expected Response Time</p>
+                              <p className="text-sm text-secondary-600">We typically respond within 24-48 hours</p>
+                            </div>
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => setIsSubmitted(false)}
+                          className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all shadow-lg hover:shadow-xl"
+                        >
+                          Send Another Message
+                        </button>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-secondary-900 mb-2">
-                      Message Sent Successfully!
-                    </h3>
-                    <p className="text-secondary-600">
-                      Thank you for reaching out. We'll get back to you within 24-48 hours.
-                    </p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-secondary-700 mb-2">
-                          Your Name *
+                          Your Name
                         </label>
                         <input
                           type="text"
@@ -180,12 +207,12 @@ export default function ContactPage() {
                           value={formData.name}
                           onChange={handleChange}
                           className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all placeholder:text-secondary-400"
-                          placeholder="John Doe"
+                          placeholder="Enter Name"
                         />
                       </div>
                       <div>
                         <label htmlFor="email" className="block text-sm font-medium text-secondary-700 mb-2">
-                          Email Address *
+                          Email Address
                         </label>
                         <input
                           type="email"
@@ -195,36 +222,30 @@ export default function ContactPage() {
                           value={formData.email}
                           onChange={handleChange}
                           className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all placeholder:text-secondary-400"
-                          placeholder="john@example.com"
+                          placeholder="Enter Email Address"
                         />
                       </div>
                     </div>
 
                     <div>
                       <label htmlFor="subject" className="block text-sm font-medium text-secondary-700 mb-2">
-                        Subject *
+                        Subject
                       </label>
-                      <select
+                      <input
+                        type="text"
                         id="subject"
                         name="subject"
                         required
                         value={formData.subject}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all"
-                      >
-                        <option value="">Select a subject</option>
-                        <option value="membership">Membership Inquiry</option>
-                        <option value="collaboration">Collaboration Proposal</option>
-                        <option value="event">Event Inquiry</option>
-                        <option value="sponsorship">Sponsorship</option>
-                        <option value="feedback">Feedback</option>
-                        <option value="other">Other</option>
-                      </select>
+                        className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all placeholder:text-secondary-400"
+                        placeholder="Enter Subject"
+                      />
                     </div>
 
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-secondary-700 mb-2">
-                        Message *
+                        Message
                       </label>
                       <textarea
                         id="message"
@@ -234,7 +255,7 @@ export default function ContactPage() {
                         value={formData.message}
                         onChange={handleChange}
                         className="w-full px-4 py-3.5 bg-secondary-50 border-2 border-secondary-100 rounded-xl focus:outline-none focus:ring-0 focus:border-primary-500 focus:bg-white transition-all resize-none placeholder:text-secondary-400"
-                        placeholder="Tell us more about your inquiry..."
+                        placeholder="Enter your message here"
                       />
                     </div>
 

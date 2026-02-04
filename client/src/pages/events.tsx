@@ -42,7 +42,7 @@ const projects = [
     title: 'Devrai',
     url: 'https://devrai-web.vercel.app/',
     team: [
-      { name: 'Sarvesh Kolte SY', role: 'Developer' },
+      { name: 'Sarvesh Kolte', role: 'Developer' },
     ],
     description: 'Devrai is a community service website focused on environmental awareness and social responsibility, serving as an informational platform for initiatives and outreach.',
     experience: 'The development emphasized clean design and usability for public audiences, reinforcing the importance of clarity in community-oriented platforms.',
@@ -71,6 +71,22 @@ const projects = [
     description: 'mlsa-ioit is the website that connects student with the microsoft.',
     experience: 'Developing the MLSA website was a hands-on learning experience that strengthened my skills in web development, teamwork, and real-world problem solving.',
     color: 'from-teal-500 to-cyan-400',
+  },
+  {
+    id: 7,
+    title: 'Philants',
+    url: 'https://philants.netlify.app/',
+    team: [
+      { name: 'Anushka Gaikwad', role: 'Developer' },
+      { name: 'Sarthak Deochake', role: 'Developer' },
+      { name: 'Akshat Bhosale', role: 'Developer' },
+      { name: 'Ashish Kharde', role: 'Developer' },
+      { name: 'Chinmay Nakwa', role: 'Developer' },
+      { name: 'Swaroop Patil', role: 'Developer' },
+    ],
+    description: 'Philants is a community-focused platform designed to connect philanthropic initiatives with volunteers and supporters.',
+    experience: 'This project enhanced collaboration skills and emphasized the importance of teamwork in building impactful web applications.',
+    color: 'from-rose-500 to-pink-400',
   },
 ];
 
