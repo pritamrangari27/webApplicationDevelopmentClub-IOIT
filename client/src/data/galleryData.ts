@@ -31,5 +31,11 @@ export const galleryImages: GalleryImage[] = [
     title: 'Devrai',
     team: ['Sarvesh Kolte']
   },
+    {
+    id: 5,
+    src: '/images/eventPhotos/event2.jpg',
+    title: 'Green Club',
+    team: ['Chinmay Nakwa']
+  },
 ];
 
