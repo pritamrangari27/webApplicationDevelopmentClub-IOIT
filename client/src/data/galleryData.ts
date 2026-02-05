@@ -33,7 +33,7 @@ export const galleryImages: GalleryImage[] = [
   },
     {
     id: 5,
-    src: '/images/eventPhotos/event2.jpg',
+    src: '/images/eventPhotos/event2.jpeg',
     title: 'Green Club',
     team: ['Chinmay Nakwa']
   },
