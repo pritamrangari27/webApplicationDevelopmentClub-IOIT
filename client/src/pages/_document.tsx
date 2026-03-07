@@ -8,14 +8,26 @@ export default function Document() {
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#2563eb" />
         <meta name="google-adsense-account" content="ca-pub-8802096290433857" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* Google AdSense */}
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8802096290433857"
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+
+        {/* Monetag Multitag */}
+        <Script
+          src="https://quge5.com/88/tag.min.js"
+          data-zone="217291"
+          data-cfasync="false"
+          strategy="afterInteractive"
+        />
+
       </Head>
       <body>
         <Main />
