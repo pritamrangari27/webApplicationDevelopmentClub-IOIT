@@ -191,8 +191,13 @@ h1, h2, h3, h4, h5, h6 {
   background-color: rgb(191 219 254);
   color: rgb(30 58 138);
 }
-/* Move Monetag ad below navbar */
-[class*="monetag"],
+/* Fix Monetag ad overlapping navbar */
+
+nav {
+  z-index: 9999;
+}
+
 iframe[src*="quge5"] {
-  top: 80px !important;   /* adjust depending on navbar height */
+  z-index: 10 !important;
+  top: 90px !important;
 }
