@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import Script from 'next/script';
 import { Inter } from 'next/font/google';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -20,6 +21,23 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      {/* Google AdSense */}
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8802096290433857"
+        crossOrigin="anonymous"
+        strategy="afterInteractive"
+      />
+
+      {/* Monetag Multitag */}
+      <Script
+        src="https://quge5.com/88/tag.min.js"
+        data-zone="217291"
+        data-cfasync="false"
+        strategy="afterInteractive"
+      />
+
       <div className={`${inter.variable} font-sans min-h-screen flex flex-col`}>
         <Navbar />
         <main className="flex-grow">
