@@ -29,15 +29,6 @@ export default function App({ Component, pageProps }: AppProps) {
         crossOrigin="anonymous"
         strategy="afterInteractive"
       />
-
-      {/* Monetag Multitag */}
-      <Script
-        src="https://quge5.com/88/tag.min.js"
-        data-zone="217291"
-        data-cfasync="false"
-        strategy="afterInteractive"
-      />
-
       <div className={`${inter.variable} font-sans min-h-screen flex flex-col`}>
         <Navbar />
         <main className="flex-grow">
