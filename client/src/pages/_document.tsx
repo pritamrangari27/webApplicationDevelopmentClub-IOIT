@@ -19,15 +19,7 @@ export default function Document() {
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-
-        {/* Monetag Multitag */}
-        <Script
-          src="https://quge5.com/88/tag.min.js"
-          data-zone="217291"
-          data-cfasync="false"
-          strategy="afterInteractive"
-        />
-
+        
       </Head>
       <body>
         <Main />
