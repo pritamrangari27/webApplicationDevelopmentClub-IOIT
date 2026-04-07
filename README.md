@@ -1,7 +1,6 @@
 # Web Application Development Club
 
-A professional, high-performance website for the Web Application Development Club at AISSMS IOIT, Pune.  
-
+A professional, high-performance website for the Web Application Development Club at AISSMS IOIT, Pune.
 
 ## 🚀 Live Demo
 
