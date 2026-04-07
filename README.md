@@ -1,6 +1,6 @@
 # Web Application Development Club
 
-A professional, high-performance website for the Web Application Development Club at AISSMS IOIT, Pune. Built with Next.js (frontend) and Node.js/Express (backend).
+A professional, high-performance website for the Web Application Development Club at AISSMS IOIT, Pune. Built with Next.js and Node.js/Express (backend).
 
 ## 🚀 Live Demo
 
