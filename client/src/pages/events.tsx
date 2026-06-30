@@ -2,18 +2,18 @@ import Head from 'next/head';
 import { Globe, Users, ExternalLink } from 'lucide-react';
 
 const projects = [
-  {
-    id: 1,
-    title: 'IOIT Timetable & Attendance Tracker',
-    url: 'https://ioit-tt.netlify.app/',
-    team: [
-      { name: 'Swaroop Patil', role: 'Developer' },
-      { name: 'Ashish Kharde', role: 'Contributor' },
-    ],
-    description: 'A minimalist timetable and attendance tracker designed for quick daily use. It provides today and week views, attendance tracking via a calendar, keyboard shortcuts, and offline-first storage using localStorage, with no backend or frameworks.',
-    experience: 'The project focused on simplicity, performance, and clean UI. Building without frameworks improved understanding of core JavaScript, browser APIs, and efficient state management.',
-    color: 'from-blue-500 to-cyan-400',
-  },
+  // {
+  //   id: 1,
+  //   title: 'IOIT Timetable & Attendance Tracker',
+  //   url: 'https://ioit-tt.netlify.app/',
+  //   team: [
+  //     { name: 'Swaroop Patil', role: 'Developer' },
+  //     { name: 'Ashish Kharde', role: 'Contributor' },
+  //   ],
+  //   description: 'A minimalist timetable and attendance tracker designed for quick daily use. It provides today and week views, attendance tracking via a calendar, keyboard shortcuts, and offline-first storage using localStorage, with no backend or frameworks.',
+  //   experience: 'The project focused on simplicity, performance, and clean UI. Building without frameworks improved understanding of core JavaScript, browser APIs, and efficient state management.',
+  //   color: 'from-blue-500 to-cyan-400',
+  // },
   {
     id: 2,
     title: 'AI Graveyard',
